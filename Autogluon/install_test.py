@@ -6,7 +6,7 @@
 # Time       ：2023/7/17 11:15
 # Author     ：Jago
 # Email      ：huwl2022@shanghaitech.edu.cn
-# version    ：python 3.10.11
+# version    ：python 3.9.12
 # Description：
 """
 # import torch
