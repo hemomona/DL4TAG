@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 """
-# File       : linear _regression_scratch.py
+# File       : linear_regression_scratch.py
 # Time       ：2023/7/23 10:14
 # Author     ：Jago
 # Email      ：huwl2022@shanghaitech.edu.cn
