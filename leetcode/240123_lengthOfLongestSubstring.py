@@ -7,7 +7,7 @@
 # Author     ：Jago
 # Email      ：huwl2022@shanghaitech.edu.cn
 # version    ：python 3.10.11
-# Description：
+# Description：给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
 """
 
 
