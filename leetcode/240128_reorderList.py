@@ -1,0 +1,127 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+"""
+# File       : 240128_reorderList.py
+# Time       ：2024/1/28 15:34
+# Author     ：Jago
+# Email      ：huwl2022@shanghaitech.edu.cn
+# version    ：python 3.10.11
+# Description：
+给定一个单链表 L 的头节点 head ，单链表 L 表示为：
+L0 → L1 → … → Ln - 1 → Ln
+请将其重新排列后变为：
+L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+即只有一个节点 则不会更改顺序
+  只有两个节点 也不会更改顺序
+"""
+from typing import Optional
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        我的解法，时间复杂度应该是O(N2)
+        """
+        while head and head.next:
+            # 记录最后一个节点的前一个节点
+            before_last = head
+            while before_last.next.next:
+                before_last = before_last.next
+
+            # 记录最后一个节点
+            last = before_last.next
+            # 将最后一个节点从链表中断开
+            before_last.next = None
+            # 记录头结点下一个节点，在头结点与该节点间会插入last
+            after_head = head.next
+            # 头结点下一个节点指向last
+            head.next = last
+            # last下一个节点指向 插入前 头结点下一个节点
+            last.next = after_head
+            # 将插入last后的下一个节点作为下一轮循环的开始
+            head = after_head
+
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        利用线性表存储该链表，然后利用线性表可以下标访问的特点，直接按顺序访问指定元素，重建该链表即可。
+        """
+        if not head:
+            return
+
+        vec = list()
+        while head:
+            vec.append(head)
+            head = head.next
+
+        i, j = 0, len(vec) - 1
+        while i < j:
+            vec[i].next = vec[j]
+            i += 1
+            if i == j:
+                break
+            vec[j].next = vec[i]
+            j -= 1
+        vec[i].next = None
+
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        注意到目标链表即为将原链表的左半端和反转后的右半端合并后的结果。
+        这样我们的任务即可划分为三步：
+            找到原链表的中点（参考「876. 链表的中间结点」）。
+                我们可以使用快慢指针来 O(N) 地找到链表的中间节点。
+            将原链表的右半端反转（参考「206. 反转链表」）。
+                我们可以使用迭代法实现链表的反转。
+            将原链表的两端合并。
+                因为两链表长度相差不超过 1，因此直接合并即可。
+        """
+        if not head:
+            return
+
+        mid = self.middleNode(head)
+        l1 = head
+        l2 = mid.next
+        mid.next = None
+        l2 = self.reverseList(l2)
+        self.mergeList(l1, l2)
+
+    def middleNode(self, head: ListNode) -> ListNode:
+        slow = fast = head
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+
+    def reverseList(self, head: ListNode) -> ListNode:
+        prev = None
+        curr = head
+        while curr:
+            nextTemp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nextTemp
+        return prev
+
+    def mergeList(self, l1: ListNode, l2: ListNode):
+        while l1 and l2:
+            l1_tmp = l1.next
+            l2_tmp = l2.next
+
+            l1.next = l2
+            l1 = l1_tmp
+
+            l2.next = l1
+            l2 = l2_tmp
