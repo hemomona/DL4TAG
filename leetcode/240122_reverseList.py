@@ -7,7 +7,8 @@
 # Author     ：Jago
 # Email      ：huwl2022@shanghaitech.edu.cn
 # version    ：python 3.10.11
-# Description：给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+# Description：
+给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
 方法一迭代iterate：时间O(n)，空间O(1)
 方法二递归recursion：时间O(n)，空间O(n)
 """

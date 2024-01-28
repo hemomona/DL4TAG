@@ -7,7 +7,8 @@
 # Author     ：Jago
 # Email      ：huwl2022@shanghaitech.edu.cn
 # version    ：python 3.10.11
-# Description：给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+# Description：3. 无重复字符的最长子串
+给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
 """
 
 
@@ -30,7 +31,7 @@ class Solution:
                 # window_position = s.find("".join(curr_substr))
                 rightmost_char_position = s.rfind(s[c], 0, c)
                 curr_substr = list(s[rightmost_char_position+1: c+1])
-            print(s[c], '\t', curr_substr)
+            # print(s[c], '\t', curr_substr)
         longest_num = max(len(curr_substr), longest_num)
         return longest_num
 

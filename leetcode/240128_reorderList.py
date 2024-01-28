@@ -7,7 +7,7 @@
 # Author     ：Jago
 # Email      ：huwl2022@shanghaitech.edu.cn
 # version    ：python 3.10.11
-# Description：
+# Description：143. 重排链表
 给定一个单链表 L 的头节点 head ，单链表 L 表示为：
 L0 → L1 → … → Ln - 1 → Ln
 请将其重新排列后变为：
