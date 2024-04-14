@@ -22,11 +22,6 @@ class Solution:
             快速排序：从子数组a[l...r]中任意选择一个元素x，调整子数组使得左边元素大于它，右边元素小于它，递归调用。
             每次划分我们一定可以确定选择的x的最终位置，那么只要它的位置q为第k个，我们返回a[q]即可，如果q小于目标位置则递归右子区间，如果q大于目标位置则递归左子区间。
             快排的性能与划分的子数组的长度相关。如果每次都划分为1和n-1，那么时间代价为O(n^2)，如果随机化则为O(n)。
-            :param arr:
-            :param left:
-            :param kth:
-            :param right:
-            :return:
             """
             curr = partition(arr, left, right)
             if curr == kth:
